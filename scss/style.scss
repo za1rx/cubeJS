@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+body{
+    height: calc(100vh - 258px);
+    background: linear-gradient(220deg, #BC1010 8%, #000E67 70%);
+    background-repeat: no-repeat;
+    font-family: "Montserrat", serif;
+}
+
+@import 
+    'cube',
+    'sidebar';
