@@ -86,3 +86,10 @@
 .display-front{
     transform: rotateX(0deg) rotateY(0deg) !important;
 }
+
+@media(max-width: 700px){
+    .sidebar{
+        width: 300px;
+        left: -338px;
+    }
+}
