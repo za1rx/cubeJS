@@ -1,21 +1,3 @@
-// Функция для обновления цвета
-function updateColor() {
-    const r = document.getElementById("red").value;
-    const g = document.getElementById("green").value;
-    const b = document.getElementById("blue").value;
-    const opacity = document.querySelector('#opacity').value
-
-    const front = document.querySelector(".front");
-    front.style.backgroundColor = `rgba(${r}, ${g}, ${b}, ${opacity})`;
-  }
-
-  // Добавляем обработчики событий для всех инпутов
-  document.querySelectorAll('input[type="range"]').forEach((input) => {
-    input.addEventListener("input", updateColor);
-  });
-
-
-
 // -------------------------------------------------------------------//
 
 (function () {
@@ -115,3 +97,4 @@ function updateColor() {
 
 
 // ----------------------------------------------------------- //
+
