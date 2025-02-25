@@ -38,36 +38,84 @@ button.addEventListener("click", () => {
 //     input.addEventListener("input", updateColor);
 //   });
 
-const accordion = document.querySelector('.accordion')
+const accordion = document.querySelector('.accordion');
 let side = 'right';
 
+// Восстановление цветов при загрузке страницы
+document.addEventListener('DOMContentLoaded', () => {
+  loadColors();
+});
+
+// Слушатель нажатия, чтобы знать, какая грань активна
 accordion.addEventListener('click', event => {
-  if(event.target.dataset.side){
+  if (event.target.dataset.side) {
     side = event.target.dataset.side;
-    
   }
-})
+});
 
 function changeFront() {
   const header = document.querySelector(`[data-side="${side}"]`);
-
   const content = header.nextElementSibling;
 
+  // Получаем значения ползунков
   const r = content.querySelector('#range-r').value;
   const g = content.querySelector('#range-g').value;
   const b = content.querySelector('#range-b').value;
   const o = content.querySelector('#range-o').value;
 
-  // Получаем активную сторону
+  // Обновляем цвет активной грани
   const sideActive = document.querySelector(`.${side}`);
+  const color = `rgba(${r}, ${g}, ${b}, ${o})`;
+  sideActive.style.backgroundColor = color;
 
-  sideActive.style.backgroundColor = `rgba(${r}, ${g}, ${b}, ${o})`;
+  // Сохраняем в localStorage
+  saveColor(side, color);
 }
 
+// Функция для сохранения цвета в localStorage
+function saveColor(side, color) {
+  let colors = JSON.parse(localStorage.getItem('colors')) || {};
+  colors[side] = color;
+  localStorage.setItem('colors', JSON.stringify(colors));
+}
 
-const inputs = document.querySelectorAll('.accordion-content form input')
+// Функция для загрузки сохраненных цветов
+function loadColors() {
+  let colors = JSON.parse(localStorage.getItem('colors')) || {};
+  
+  for (let key in colors) {
+    const sideElement = document.querySelector(`.${key}`);
+    if (sideElement) {
+      sideElement.style.backgroundColor = colors[key];
+    }
+  }
+}
 
+// Добавляем слушатели на изменение ползунков
+const inputs = document.querySelectorAll('.accordion-content form input');
 inputs.forEach(inp => {
-  inp.addEventListener('input', changeFront)
+  inp.addEventListener('input', changeFront);
+});
+
+// удаление текста
+
+const checkBox = document.querySelector('#checkbox')
+
+checkBox.addEventListener('input', () => {
+  console.log(checkBox.checked);
+  const sideText = document.querySelectorAll('.side')
+  // let copiedSideText = sideText.slice()
+
+  // copiedSideText.forEach(text => {
+  //   console.log(text);
+    
+  // })
+  
+  if(checkBox.checked == true){
+    sideText.forEach(text => {
+      text.textContent = ''
+    })
+  }
+  
 })
 

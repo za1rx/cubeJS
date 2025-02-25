@@ -6,6 +6,11 @@ body {
   font-family: "Montserrat", serif;
 }
 
+@media (max-width: 700px) {
+  body {
+    height: 66.8vh;
+  }
+}
 .container {
   position: relative;
   margin: 250px auto;
