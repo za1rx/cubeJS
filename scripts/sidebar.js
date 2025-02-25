@@ -99,23 +99,23 @@ inputs.forEach(inp => {
 
 // удаление текста
 
-const checkBox = document.querySelector('#checkbox')
+const checkBox = document.querySelector('#checkbox');
 
 checkBox.addEventListener('input', () => {
-  console.log(checkBox.checked);
-  const sideText = document.querySelectorAll('.side')
-  // let copiedSideText = sideText.slice()
+  const sideText = document.querySelectorAll('.side');
 
-  // copiedSideText.forEach(text => {
-  //   console.log(text);
-    
-  // })
-  
-  if(checkBox.checked == true){
-    sideText.forEach(text => {
-      text.textContent = ''
-    })
-  }
-  
-})
+  sideText.forEach(text => {
+    if (checkBox.checked) {
+      // Сохраняем оригинальный текст, если он ещё не сохранён
+      if (!text.dataset.originalText) {
+        text.dataset.originalText = text.textContent;
+      }
+      text.textContent = ''; // Очищаем текст
+    } else {
+      // Восстанавливаем текст из data-атрибута
+      text.textContent = text.dataset.originalText || '';
+    }
+  });
+});
+
 

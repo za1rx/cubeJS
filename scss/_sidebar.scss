@@ -25,6 +25,17 @@
     padding: 10px;
     cursor: pointer;
     font-weight: bold;
+    transition: .4s ease;
+}
+
+.accordion-header:focus{
+    background-color: #fff;
+    color: #000;
+}
+
+.accordion-header:hover{
+    background-color: #333;
+    color: #fff;
 }
 .accordion-content {
     max-height: 0;
